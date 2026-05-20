@@ -72,8 +72,16 @@ Le système intègre :
 | Résistances et câbles | - |
 
 
+### Communications
+- **Raspberry Pi** ↔ Arduino Nano : fils (step motors ascenseurs)
+- **Raspberry Pi** ↔ ESP32 / ESP32-S3 : WiFi
+- **Raspberry Pi** ↔ Arduino Uno : fils (entrée capteurs)
+
+
 ## 🧠 Architecture logicielle
 
 cd smart-parking/raspberry-pi
 pip install -r requirements.txt
 python app.py
+
+
