@@ -1,7 +1,3 @@
-# Smart-parking-system
-🏆 Projet primé au concours Nexus (ENSA Tétouan). Parking automatisé 2 étages : ascenseurs, reconnaissance plaques marocaines (CNN), capteurs, RFID, application mobile. Stack : Raspberry Pi, Arduino, ESP32.
-
-
 # 🅿️ Smart Parking System - 2 Étages Automatisé
 
 > 🏆 **1er Prix au Concours Nexus** – ENSA Tétouan
