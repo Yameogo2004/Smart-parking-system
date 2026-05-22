@@ -1,0 +1,98 @@
+class EvChargingPayment {
+  final int id;
+  final int vehicleId;
+  final String matricule;
+  final String chargingStation;
+  final double energyKwh;
+  final double amount;
+  final String status;
+  final DateTime startedAt;
+  final DateTime? finishedAt;
+  final String paymentMethod;
+
+  const EvChargingPayment({
+    required this.id,
+    required this.vehicleId,
+    required this.matricule,
+    required this.chargingStation,
+    required this.energyKwh,
+    required this.amount,
+    required this.status,
+    required this.startedAt,
+    this.finishedAt,
+    required this.paymentMethod,
+  });
+
+  factory EvChargingPayment.fromJson(Map<String, dynamic> json) {
+    return EvChargingPayment(
+      id: _toInt(json['id']),
+      vehicleId: _toInt(json['vehicle_id']),
+      matricule: (json['matricule'] ?? '').toString(),
+      chargingStation: (json['charging_station'] ?? '').toString(),
+      energyKwh: _toDouble(json['energy_kwh']),
+      amount: _toDouble(json['amount']),
+      status: (json['status'] ?? 'pending').toString(),
+      startedAt: DateTime.tryParse(
+            (json['started_at'] ?? '').toString(),
+          ) ??
+          DateTime.now(),
+      finishedAt: json['finished_at'] != null
+          ? DateTime.tryParse(json['finished_at'].toString())
+          : null,
+      paymentMethod: (json['payment_method'] ?? 'unknown').toString(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'vehicle_id': vehicleId,
+      'matricule': matricule,
+      'charging_station': chargingStation,
+      'energy_kwh': energyKwh,
+      'amount': amount,
+      'status': status,
+      'started_at': startedAt.toIso8601String(),
+      'finished_at': finishedAt?.toIso8601String(),
+      'payment_method': paymentMethod,
+    };
+  }
+
+  EvChargingPayment copyWith({
+    int? id,
+    int? vehicleId,
+    String? matricule,
+    String? chargingStation,
+    double? energyKwh,
+    double? amount,
+    String? status,
+    DateTime? startedAt,
+    DateTime? finishedAt,
+    String? paymentMethod,
+  }) {
+    return EvChargingPayment(
+      id: id ?? this.id,
+      vehicleId: vehicleId ?? this.vehicleId,
+      matricule: matricule ?? this.matricule,
+      chargingStation: chargingStation ?? this.chargingStation,
+      energyKwh: energyKwh ?? this.energyKwh,
+      amount: amount ?? this.amount,
+      status: status ?? this.status,
+      startedAt: startedAt ?? this.startedAt,
+      finishedAt: finishedAt ?? this.finishedAt,
+      paymentMethod: paymentMethod ?? this.paymentMethod,
+    );
+  }
+
+  static int _toInt(dynamic value) {
+    if (value is int) return value;
+    if (value is double) return value.toInt();
+    return int.tryParse(value?.toString() ?? '') ?? 0;
+  }
+
+  static double _toDouble(dynamic value) {
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    return double.tryParse(value?.toString() ?? '') ?? 0;
+  }
+}
