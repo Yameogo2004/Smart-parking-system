@@ -77,6 +77,11 @@ Le système intègre :
 - **Raspberry Pi** ↔ ESP32 / ESP32-S3 : WiFi
 - **Raspberry Pi** ↔ Arduino Uno : fils (entrée capteurs)
 
+### Base de donnees
+CREATE DATABASE smart_parking 
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'parking_user'@'localhost' IDENTIFIED BY 'parking123';
+GRANT ALL ON smart_parking.* TO 'parking_user'@'localhost';
 
 ## 🧠 Architecture logicielle
 
