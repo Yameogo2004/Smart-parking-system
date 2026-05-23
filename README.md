@@ -47,9 +47,22 @@ Le système intègre :
 7. Capteur IR ferme la barrière après passage
 
 
-### Application mobile
-- **Côté client** : réservation de places, guidage
-- **Côté admin** : taux d'occupation, liste des véhicules garés, capteurs défaillants, alertes sécurité
+## 📱 Application Flutter
+
+### Côté Admin
+- 📊 Dashboard temps réel — taux d'occupation par niveau
+- 🗺️ Grille parking interactive — statut de chaque place
+- 🚗 Liste des véhicules garés avec plaque et étage
+- 🔔 Alertes automatiques capteurs hors ligne
+- 💰 Historique des paiements
+- 📈 Statistiques hebdomadaires
+
+### Côté Client
+- 🔍 Localisation de son véhicule
+- 📋 Historique des stationnements
+- 💳 Paiement en ligne
+- 🔔 Notifications en temps réel
+
 
 
 ## 🛠️ Matériel utilisé
@@ -72,16 +85,74 @@ Le système intègre :
 | Résistances et câbles | - |
 
 
+## 🏗️ Architecture système
+Raspberry Pi 4 (Maître)
+├── Arduino Uno  (I2C 0x08) ── IR1 · IR2 · IR3 · IR4 · HX711 · LDR
+├── Arduino Nano (I2C 0x09) ── Stepper A1 (entrée) · Stepper A2 (sortie)
+├── ESP32 Entrée (WiFi)     ── LCD I2C · Servo barrière · 192.168.76.88
+├── ESP32 Sortie (WiFi)     ── RFID RC522 · LCD · Servo · IR · 192.168.76.144
+├── PC ANPR      (TCP)      ── Caméra · Modèle CNN · 192.168.76.22:5000
+└── Flask API    (HTTP)     ── MariaDB · REST API · localhost:5000
+
+---
+
+## 🧠 Stack technologique
+
+| Couche | Technologie |
+|--------|-------------|
+| Firmware | Arduino IDE · C++ |
+| IoT Master | Python 3 · smbus2 |
+| Backend | Flask · PyMySQL |
+| Base de données | MariaDB |
+| Application | Flutter · Dart |
+| ANPR | Python · OpenCV · CNN |
+| Communication | I2C · WiFi · TCP Socket · HTTP REST |
+
+
 ### Communications
 - **Raspberry Pi** ↔ Arduino Nano : fils (step motors ascenseurs)
 - **Raspberry Pi** ↔ ESP32 / ESP32-S3 : WiFi
 - **Raspberry Pi** ↔ Arduino Uno : fils (entrée capteurs)
 
 
-## 🧠 Architecture logicielle
+## 🚀 Installation
 
-cd smart-parking/raspberry-pi
-pip install -r requirements.txt
-python app.py
+### Prérequis Raspberry Pi
+bash
+pip install flask flask-cors pymysql smbus2 requests
 
 
+### Base de données
+sql
+CREATE DATABASE smart_parking 
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'parking_user'@'localhost' IDENTIFIED BY 'parking123';
+GRANT ALL ON smart_parking.* TO 'parking_user'@'localhost';
+
+
+### Lancement
+bash
+# Terminal 1 — API Flask
+python3 app.py
+
+# Terminal 2 — Système principal
+python3 main.py
+
+# Test des connexions
+python3 test_connexions.py
+
+## 🎥 Démonstration
+
+[![Voir la démo](https://img.shields.io/badge/🎬_Regarder_la_démonération-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/drive/folders/1-NwvNPaacl2qP96XJzibX-tao3X1Dn6m)
+---
+
+
+## 👥 Équipe
+
+| Nom | 
+|-----|--------------|
+| *Ariel Barthélémy Wendtoin Yameogo* | 
+| *Abdoulfatah Omar* | 
+| *Nachda Nourouddine* | 
+
+*Encadré par :* Prof. El Adib · ENSA Tétouan
