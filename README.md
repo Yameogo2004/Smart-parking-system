@@ -131,15 +131,14 @@ GRANT ALL ON smart_parking.* TO 'parking_user'@'localhost';
 
 
 ### Lancement
-bash
-# Terminal 1 — API Flask
+bash --# Terminal 1 — API Flask
 python3 app.py
 
 # Terminal 2 — Système principal
 python3 main.py
 
 # Test des connexions
-python3 test_connexions.py
+python3 test_connexions.py--
 
 ## 🎥 Démonstration
 
