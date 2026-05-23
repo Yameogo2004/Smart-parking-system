@@ -101,6 +101,7 @@ Raspberry Pi 4 (Maître)
 ├── PC ANPR      (TCP)      ── Caméra · Modèle CNN · 192.168.76.22:5000
 └── Flask API    (HTTP)     ── MariaDB · REST API · localhost:5000
 
+
 ---
 
 ## 🧠 Stack technologique
@@ -115,21 +116,61 @@ Raspberry Pi 4 (Maître)
 | ANPR | Python · OpenCV · CNN |
 | Communication | I2C · WiFi · TCP Socket · HTTP REST |
 
-
 ### Communications
 - **Raspberry Pi** ↔ Arduino Nano : fils (step motors ascenseurs)
 - **Raspberry Pi** ↔ ESP32 / ESP32-S3 : WiFi
 - **Raspberry Pi** ↔ Arduino Uno : fils (entrée capteurs)
 
+---
+
+## 📂 Où exécuter chaque fichier ?
+
+| Dossier / Fichier | Contenu | Où l'exécuter |
+|-------------------|---------|----------------|
+| `app.py` / `main.py` | Serveur Flask (API, base de données, logique métier) | **Raspberry Pi 4** |
+| `Arduino/` | Codes `.ino` pour Uno, Nano | **Arduino Uno / Nano** |
+| `ESP 32/` | Codes `.ino` pour ESP32, ESP32-S3 | **ESP32 / ESP32-S3** |
+| `app_mobile/` | Application Flutter (Dart) | **Smartphone (Android/iOS)** ou émulateur |
+| `cnn-plaque/` | Modèle CNN + script de détection | **PC avec webcam** (ou Raspberry Pi si webcam USB) |
+
+### 🔍 Détail pour `cnn-plaque/` (PC avec webcam)
+
+Ce dossier contient le modèle de reconnaissance des plaques marocaines.  
+Sur le PC connecté à la webcam, lancer :
+
+```bash
+cd cnn-plaque
+pip install -r requirements.txt
+python detect_plate.py
+```
+
 
 ## 🚀 Installation
 
 ### Prérequis Raspberry Pi
-bash
+```bash
 pip install flask flask-cors pymysql smbus2 requests
 
+# Installer les dépendances Python
+pip install flask flask-cors pymysql smbus2 requests
 
+# Lancer l'API
+python3 app.py
+```
 
+### Sur PC (reconnaissance plaque)
+```bash
+cd cnn-plaque
+pip install -r requirements.txt
+python detect_plate.py
+```
+
+### Sur smartphone ou pc (application Flutter)
+```bash
+cd app_mobile
+flutter pub get
+flutter run
+```
 
 
 
