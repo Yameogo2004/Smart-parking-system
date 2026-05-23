@@ -1,0 +1,55 @@
+name: app_mobile
+description: Application Parking Intelligent
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  flutter_localizations:
+    sdk: flutter
+  
+  # UI
+  cupertino_icons: ^1.0.6
+  
+  # API et réseau
+  http: ^1.1.0
+  
+  # Stockage local
+  shared_preferences: ^2.2.0
+  flutter_secure_storage: ^9.0.0
+  
+  # Gestion d'état
+  provider: ^6.0.5
+  
+  # Utilitaires
+  intl: ^0.20.2
+  qr_flutter: ^4.1.0
+  
+  # Géolocalisation
+  geolocator: ^10.1.0
+  
+  # Caméra et images
+  image_picker: ^1.0.5
+  camera: ^0.10.5
+  
+  # Scan QR code
+  mobile_scanner: ^3.5.0
+  
+  # Notifications
+  flutter_local_notifications: ^15.1.0
+  
+  # Graphiques
+  fl_chart: ^0.66.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
