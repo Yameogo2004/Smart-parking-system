@@ -123,22 +123,13 @@ pip install flask flask-cors pymysql smbus2 requests
 
 
 ### Base de données
-sql
+sql--
 CREATE DATABASE smart_parking 
-  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'parking_user'@'localhost' IDENTIFIED BY 'parking123';
-GRANT ALL ON smart_parking.* TO 'parking_user'@'localhost';
+GRANT ALL ON smart_parking.* TO 'parking_user'@'localhost';--
 
 
-### Lancement
-bash --# Terminal 1 — API Flask
-python3 app.py
-
-# Terminal 2 — Système principal
-python3 main.py--
-
-# Test des connexions
-python3 test_connexions.py--
 
 ## 🎥 Démonstration
 
