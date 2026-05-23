@@ -2,6 +2,13 @@
 
 > 🏆 **1er Prix au Concours Nexus** – ENSA Tétouan
 
+
+![Version](https://img.shields.io/badge/version-3.1.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/Python-3.9+-yellow)
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
+![Arduino](https://img.shields.io/badge/Arduino-IDE-teal)
+
 ## 📖 À propos
 
 Ce projet est un **système de stationnement intelligent** conçu pour répondre aux besoins des grandes villes comme Rabat, Casablanca ou Tanger. Nous avons réalisé une **maquette fonctionnelle d'un parking à 2 étages** avec entrée et sortie séparées, entièrement automatisée.
