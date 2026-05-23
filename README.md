@@ -135,7 +135,7 @@ bash --# Terminal 1 — API Flask
 python3 app.py
 
 # Terminal 2 — Système principal
-python3 main.py
+python3 main.py--
 
 # Test des connexions
 python3 test_connexions.py--
